@@ -1,0 +1,9 @@
+.link{
+    color:white;
+    text-transform: uppercase;
+    margin-right: 25px;
+}
+
+.link:hover{
+    color:#999;
+}
