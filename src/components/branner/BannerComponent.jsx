@@ -8,7 +8,7 @@ function BannerComponent() {
     <div className="banner">
       <Carousel variant="light">
         {goods.map((item, i) => (
-          <Carousel.Item key={i}>
+          <Carousel.Item key={i} style={{ maxHeight: "600px" }}>
             <img className="d-block w-100 img" src={item.img} alt={item.name} />
             <Carousel.Caption>
               <h5>{item.name}</h5>
