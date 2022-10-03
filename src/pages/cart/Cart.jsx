@@ -43,7 +43,16 @@ function Cart() {
   const removeToCart = (item) => {
     dispatch({ type: "REMOVE_TO_CART", payload: item });
   };
-  console.log({ state });
+  // console.log({ state });
+  const onPayment = () => {
+    if (state.userInfo.status) {
+      setPayment(true);
+    } else if (state.nonUser?.fname) {
+      setPayment(true);
+    } else {
+      window.alert("Add address or Login");
+    }
+  };
   return (
     <div className="mt-5 position-relative ">
       <Container className="pt-5 ">
@@ -78,7 +87,7 @@ function Cart() {
                     className="text-primary text-decoration-underline"
                     style={{ cursor: "pointer" }}
                   >
-                    edit
+                    add address
                   </span>
                 )}
                 {state.nonUser?.fname && (
@@ -97,7 +106,7 @@ function Cart() {
                 )}
               </Card.Body>
               <Card.Text className="m-2">
-                <Button variant="success" onClick={() => setPayment(true)}>
+                <Button variant="success" onClick={onPayment}>
                   กดชำระสินค้า
                 </Button>
               </Card.Text>
@@ -189,7 +198,17 @@ function Cart() {
                 type="checkbox"
                 label="Save this card for future Vendors payments"
               />
-              <Button className="mt-2">payment</Button>
+              <Button
+                className="mt-2"
+                onClick={() =>
+                  dispatch({
+                    type: "CHECK_OUT",
+                    payload: { cartItems, user: state.nonUser },
+                  })
+                }
+              >
+                payment
+              </Button>
             </Container>
           </div>
         )}

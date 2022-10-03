@@ -8,10 +8,10 @@ function FormNonUser({ data }) {
   const { setShowForm, showForm } = data;
   const { state, dispatch } = useContext(UserContext);
   const [nonUser, setNonUser] = useState({
-    fname: "" || state.nonUser?.fname,
-    lname: "" || state.nonUser?.lname,
-    telephone: "" || state.nonUser?.telephone,
-    address: "" || state.nonUser?.address,
+    fname: state.nonUser?.fname || "",
+    lname: state.nonUser?.lname || "",
+    telephone: state.nonUser?.telephone || "",
+    address: state.nonUser?.address || "",
   });
   const formNonUser = (e) => {
     const value = e.target.value;

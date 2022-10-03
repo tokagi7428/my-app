@@ -22,6 +22,9 @@ const INITUSER = {
   cart: {
     cartItems: [],
   },
+  history: {
+    orders: [],
+  },
 };
 
 const loginReducer = (state, action) => {
@@ -63,6 +66,14 @@ const loginReducer = (state, action) => {
       return {
         ...state,
         cart: { ...state.cart, cartItems: newCart },
+      };
+    case "CHECK_OUT":
+      const newOrder = action.payload;
+      const orders = [...state.history.orders, newOrder];
+      return {
+        ...state,
+        history: { ...state.history, orders },
+        cart: { cartItems: [] },
       };
     default:
       return state;
